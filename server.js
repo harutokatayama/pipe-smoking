@@ -12,7 +12,6 @@ app.use(express.static(process.cwd() + "/smoke-effect/dist/smoke-effect"));
 app.get('/api/products', (req, res) => {
     Products.find((err, products) => {
         if (err) {
-            console.log('aaa')
             return res.send(err);
         } else {
             console.log(products)
@@ -27,4 +26,4 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
     console.log(`Server listening on the port::${port}`);
-});;
+});

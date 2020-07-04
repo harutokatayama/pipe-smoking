@@ -20,7 +20,7 @@ export class ProductsService {
 
     console.log(this.http.get<IProducts[]>('/api/products'));
 
-    //HTTP 
+    //HTTP
     return this.http.get<IProducts[]>('/api/products')
       .pipe(catchError(this.handleError<IProducts[]>('getProducts', [])))
   }
