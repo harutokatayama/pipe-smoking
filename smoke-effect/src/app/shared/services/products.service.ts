@@ -10,7 +10,7 @@ import { tap, catchError } from 'rxjs/operators';
 export class ProductsService {
   constructor(private http: HttpClient){}
 
-  getProducts() {
+  getProducts(): Observable<IProducts[]> {
     // let subject = new Subject<IProducts[]>()
     // setTimeout(() => {
     //   subject.next(PRODUCTS);
@@ -18,7 +18,7 @@ export class ProductsService {
     // }, 100)
     // return subject;
 
-    console.log(this.http.get('/api/products'));
+    console.log(this.http.get<IProducts[]>('/api/products'));
 
     //HTTP 
     return this.http.get<IProducts[]>('/api/products')
