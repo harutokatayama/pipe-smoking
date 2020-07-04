@@ -1,0 +1,45 @@
+<nav class="nav-bar">
+  <div class="siteTitleContainer">
+    <span class="siteTitle" (click)="loadOpening()">
+      PipeTobacco
+    </span>
+  </div>
+
+  <span class="searchContainer">
+    <form id="searchForm" (ngSubmit)="searchProducts(searchTerm)" class="navbar-form navbar-right">
+      <div class="form-group">
+        <input [(ngModel)]="searchTerm" name="searchTerm" type="text" class="searchInput" placeholder="Search Products">
+      </div>
+      <button class="searchButton" (click)="search(searchTerm)">
+        search
+      </button>
+      <button class="modalButton" modal-trigger="serarchResults">
+        Modal
+      </button>
+    </form>
+  </span>
+
+  <span class="buttonContainer">
+    <button class="button" [routerLink]="['/top']" routerLinkActive="router-link-active">Top</button>
+    <button class="button" [routerLink]="['/products']" routerLinkActive="router-link-active">Products</button>
+    <button class="button" [routerLink]="['/user', this.user.id]" routerLinkActive="router-link-active">User</button>
+    <button class="button" [routerLink]="['/login']" routerLinkActive="router-link-active">Login</button>
+    <button class="button" [routerLink]="['/sign-up']" routerLinkActive="router-link-active">Sign up</button>
+    <button class="button" [routerLink]="['/cart']" routerLinkActive="router-link-active">Cart</button>
+  </span>
+  
+</nav>
+
+<search-modal class="searchModal" closeModalClick="true" elementId="serarchResults" title="Matching Sessions">
+  <span class="matchedNumber" *ngIf="foundProducts">
+    {{foundProducts.length}} <span> Matched</span>
+  </span>
+  <div class="list-group">
+    <a class="list-group-item" *ngFor="let product of foundProducts" [routerLink]="['products', product.id]">
+      <img class="modalImage" src='{{product?.imageUrl}}'>
+      {{product.name}}
+    </a>
+  </div>
+</search-modal>
+
+<!-- if this route is products then search form will appear here. -->

@@ -1,0 +1,66 @@
+.flexColumn {
+    display: flex;
+    flex-flow: column nowrap; 
+}
+
+.productItem {
+    width: 1024px;
+    padding: 20px;
+    border-bottom: 4px solid gray;
+}
+
+.productItem:hover {
+    background-color: rgb(54, 51, 51);
+}
+
+.productItem:hover .productRouter {
+    background-color: rgb(54, 51, 51);
+}
+
+.productItem:hover .button {
+    background-color: silver;
+    color: black;
+}
+
+.productImage {
+    height: 240px;
+    width: 240px;
+}
+
+.productRouter {
+    outline: none;
+    display: flex;
+    flex-flow: row nowrap;
+    position: relative;
+}
+
+.productRouter:hover {
+    cursor: pointer;
+}
+
+.productInfoContainer {
+    padding-left: 15px;
+}
+
+.OmissionFrame {
+    font-size: 20px;
+    font-style: italic;
+}
+
+.evaluation {
+    display: flex;
+}
+
+.strength {
+    display: flex;
+}
+
+.button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    background-color: rgb(54, 51, 51);
+    position: absolute;
+    bottom: 0;
+}

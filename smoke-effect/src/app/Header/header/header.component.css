@@ -1,0 +1,62 @@
+.nav-bar {
+    display: flex;
+}
+
+.siteTitle {
+    color: rgb(55, 124, 55);
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.searchContainer {
+    margin-left: 10px;
+}
+
+.navbar-form {
+    display: flex;
+}
+
+.searchInput {
+    height: 46px;
+}
+
+.searchButton {
+    border: none;
+    outline: none;
+    height: 46px;
+}
+
+.modalButton {
+    border: none;
+    outline: none;
+    height: 46px;
+}
+
+.buttonContainer {
+    margin-left: 3%;
+}
+
+.button {
+    background-color: #000;
+    border: none;
+    color: white;
+    outline: none;
+    height: 46px;
+}
+
+.router-link-active {
+    background-color: gray;
+}
+
+.button:hover {
+    background-color: darkgray;
+}
+
+.btn {
+    color: aliceblue;
+}
+
+.modalImage {
+    width: 50px;
+    height: 50px;
+}

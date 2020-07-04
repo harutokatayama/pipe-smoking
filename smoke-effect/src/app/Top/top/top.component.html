@@ -1,0 +1,16 @@
+<div class="topContainer">
+  <div class="marginAuto col-md-4" *ngFor="let section of productsSections">
+  <collapse [title]="aaa">
+    <div collapse-title>
+      <div style="margin-left: 6%;">{{section}}</div>
+      </div>
+      <div collapse-body>
+        <div *ngFor="let product of products">
+          <li class="productsList" [routerLink]="['/products', product.id]"  style="cursor: pointer;" *ngIf="product.section === section">
+            {{product?.section === section ? product.name : null}}
+          </li>
+        </div>
+      </div>
+    </collapse>
+  </div>
+</div>

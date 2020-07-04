@@ -1,0 +1,50 @@
+<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+  <div class="form-group">
+    <label for="email">email</label>
+    <input id="emailId"
+           type="email" 
+           class="form-control" 
+           placeholder="Enter your registered email..."
+           formControlName="email"
+           [ngClass]="{'is-invalid' : emailMessage}"/>
+    <span class="invalid-feedback">
+      {{emailMessage}}
+    </span>
+  </div>
+
+  <div cass="form-group">
+    <label for="password">password</label>
+    <input id="passwordId" 
+           type="password" 
+           class="form-control" 
+           placeholder="Password..."
+           formControlName="password"
+           [ngClass]="{'is-invalid' : passwordMessage}"/>
+    <span class="invalid-feedback">
+      {{passwordMessage}}
+    </span>
+  </div>
+
+  <button type="submit" 
+          [disabled]="!loginForm.valid"
+          [title]="loginForm.valid? 'Login' : 'Disabled until the form data is valid'"
+          (click)="onLogin()">
+          Login
+  </button>
+
+  <button [routerLink]="['/products']">Cancel</button>
+</form>
+
+<span style="color: wheat;">Haven't signed up yet?</span>
+<br>
+<a [routerLink]="['/sign-up']">Sign Up</a>
+
+<br><span style="color: white">dirty: {{loginForm.dirty}}</span>
+<br><span style="color: white">touched: {{loginForm.touched}}</span>
+<br><span style="color: white">valid: {{loginForm.valid}}</span>
+<br><span style="color: white">value: {{loginForm.value | json}}</span>
+
+<!-- google
+fb
+tweeter
+amazon -->

@@ -1,0 +1,15 @@
+* {
+    color: white;
+}
+
+.active {
+    background-color: grey;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin: auto;
+}

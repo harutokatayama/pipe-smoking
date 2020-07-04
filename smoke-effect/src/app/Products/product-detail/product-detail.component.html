@@ -1,0 +1,27 @@
+<div class="container">
+  <img class="productImage" src='{{product?.imageUrl}}'>
+  <div>name: {{product?.name}}</div>
+  <div>price: {{product?.price | currency:'USD'}}</div>
+  <div>imageUrl: {{product?.imageUrl}}</div>
+  <div>brandName: {{product?.brandName}}</div>
+  <div>type: {{product?.type}}</div>
+  <div>stock: {{product?.stock}}</div>
+  <div>origin: {{product?.origin}}</div>
+  <div class="evaluation">
+    <span>evaluation: </span>
+    <star [rating]='product.evaluation / 2'></star>{{product.evaluation / 2}}
+  </div>
+  <div class="condition">
+    <span>condition: </span>
+    <star [rating]='product.condition'></star>{{product.condition}}
+  </div>
+  <div *ngIf="product?.strength" class="strength">
+    <span>strength: </span>
+    <star [rating]='product.strength / 2'></star>{{product.strength / 2}}
+    <span style="font-style: italic" *ngIf="10 >= product?.strength && product?.strength >= 7">(Strong)</span>
+    <span style="font-style: italic" *ngIf="6 >= product?.strength && product?.strength >= 4">(Mild)</span>
+    <span style="font-style: italic" *ngIf="3 >= product?.strength && product?.strength >= 1">(Weak)</span>
+  </div>
+  <button class="addToCartButton">Add to Cart</button>
+  <button class="backButton" (click)="backToLastPage()">Back</button>
+</div>

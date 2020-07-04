@@ -1,0 +1,10 @@
+<div class="container">
+  <div>User Name: {{this.user?.name}}</div>
+  <span>In your cart</span>
+  <div *ngFor="let product of this.user.cart">
+    <a [routerLink]="['/products', product.id]">{{product.name }}</a>
+    <span>{{product.amount}}</span>
+  </div>
+</div>
+
+<!-- registered info here-->

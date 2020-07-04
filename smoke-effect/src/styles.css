@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+}
+
+/* body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+  }
+  
+  .smoke {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .smoke:before {
+    content: "";
+    background: #fffddd;
+    width: 50%;
+    height: 1px;
+    position: absolute;
+    top: 55%;
+    animation: lineReveal 0.3s ease-in-out forwards;
+  }
+  
+  @keyframes lineReveal {
+    0% {
+      left: 0%;
+    }
+    100% {
+      left: 25%;
+    }
+  }
+  
+  span {
+    color: #fffddd;
+    font-size: 24px;
+    display: inline-block;
+    width: 2%;
+    height: 2%;
+    padding: 10px;
+    text-align: center;
+    line-height: 10%;
+    animation: textReveal 0.8s ease-out both;
+  }
+  
+  
+  @keyframes textReveal {
+    0%,
+    60% {
+      margin-top: 100px;
+      opacity: 0;
+    }
+  
+    100% {
+      margin-top: 5px;
+      margin: 1;
+    }
+  }
+
+  #video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    z-index: -1;
+  } */

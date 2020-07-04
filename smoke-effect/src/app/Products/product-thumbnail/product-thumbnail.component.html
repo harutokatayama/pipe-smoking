@@ -1,0 +1,28 @@
+<div class="flexColumn">
+  <div *ngFor="let product of visibleProducts" class="productItem">
+    <div class="productRouter" [routerLink]="['/products', product.id]">
+      <div class="imageContainer">
+        <img class="productImage" src='{{product.imageUrl}}'>
+      </div>
+      <div class="productInfoContainer">
+        <div class="OmissionFrame">{{product?.name}}</div>
+        <div>Price: {{product?.price | currency: 'USD'}}</div>
+        <div>Section: {{product?.section}}</div>
+        <div class="evaluation">
+          <span>evaluation: </span>
+          <star [rating]='product.evaluation / 2'></star>{{product.evaluation / 2}}
+        </div>
+        <div *ngIf="product?.strength" class="strength">
+          <span>strength:</span>
+          <star [rating]='product.strength / 2'></star>{{product.strength / 2}}
+          <span style="font-style: italic" *ngIf="10 >= product?.strength && product?.strength >= 7">(Strong)</span>
+          <span style="font-style: italic" *ngIf="6 >= product?.strength && product?.strength >= 4">(Mild)</span>
+          <span style="font-style: italic" *ngIf="3 >= product?.strength && product?.strength >= 1">(Weak)</span>
+        </div>
+        <button class="button">
+          <span style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Add to your cart</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+* {
+    color: white;
+}
+
+.topContainer {
+    width: max-content;
+    display: flex;
+    margin: auto;
+}
+
+.marginAuto {
+    margin: 0 auto 0 auto;
+}
+
+.productsList:hover {
+    color: gray;
+    outline: none;
+}
