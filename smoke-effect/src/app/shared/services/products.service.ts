@@ -8,21 +8,20 @@ import { tap, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductsService {
+  public cartNumber: number;
   constructor(private http: HttpClient){}
 
   getProducts(): Observable<IProducts[]> {
-    // let subject = new Subject<IProducts[]>()
-    // setTimeout(() => {
-    //   subject.next(PRODUCTS);
-    //   subject.complete();
-    // }, 100)
-    // return subject;
-
-    console.log(this.http.get<IProducts[]>('/api/products'));
+    let subject = new Subject<IProducts[]>()
+    setTimeout(() => {
+      subject.next(PRODUCTS);
+      subject.complete();
+    }, 100)
+    return subject;
 
     //HTTP
-    return this.http.get<IProducts[]>('/api/products')
-      .pipe(catchError(this.handleError<IProducts[]>('getProducts', [])))
+    // return this.http.get<IProducts[]>('/api/products')
+    //   .pipe(catchError(this.handleError<IProducts[]>('getProducts', [])))
   }
 
     // getProducts(): Observable<IProducts[]> {

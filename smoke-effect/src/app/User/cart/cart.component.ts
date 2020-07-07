@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   loginStatus;
   searchTerm = '';
   foundProducts: IProducts[];
+  cartNumber: number;
 
   constructor(
     private userService: UserService,
@@ -23,6 +24,13 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.loginStatus = this.userService.loginStatus;
     this.user = this.userService.getUser(0);
+    this.countCart(this.user);
+    console.log(this.productsService.cartNumber)
+  }
+
+  public countCart(currentUser) {
+    this.productsService.cartNumber = currentUser.cart.length;
+    this.cartNumber = this.productsService.cartNumber
   }
 
 }
