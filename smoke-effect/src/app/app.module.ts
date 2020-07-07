@@ -18,6 +18,7 @@ import { HeaderComponent } from './Header/header/header.component';
 import { FooterComponent } from './Footer/footer/footer.component';
 import { JQ_TOKEN, CollapseComponent, SearchModalComponent, ModalTriggerDirective } from './shared/barrel';
 import { InMemoryDataService } from './shared/services/in-memory-data.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 let jQuery = window['$'];
 
 @NgModule({
@@ -41,6 +42,7 @@ let jQuery = window['$'];
     AppRoutingModule,
     RatingModule,
     HttpClientModule,
+    FontAwesomeModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     )

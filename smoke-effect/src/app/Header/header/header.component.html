@@ -1,6 +1,6 @@
-<nav class="nav-bar">
+<nav class="nav-bar pt-2 pl-2">
   <div class="siteTitleContainer">
-    <span class="siteTitle" (click)="loadOpening()">
+    <span class="siteTitle" [routerLink]="['/top']" (click)="loadOpening()">
       PipeTobacco
     </span>
   </div>
@@ -11,35 +11,34 @@
         <input [(ngModel)]="searchTerm" name="searchTerm" type="text" class="searchInput" placeholder="Search Products">
       </div>
       <button class="searchButton" (click)="search(searchTerm)">
-        search
+        <fa-icon class="searchButton" [icon]="faSearch"></fa-icon>
       </button>
       <button class="modalButton" modal-trigger="serarchResults">
-        Modal
+        <fa-icon class="searchButtonPlus" [icon]="faSearchPlus"></fa-icon>
       </button>
     </form>
   </span>
 
   <span class="buttonContainer">
-    <button class="button" [routerLink]="['/top']" routerLinkActive="router-link-active">Top</button>
-    <button class="button" [routerLink]="['/products']" routerLinkActive="router-link-active">Products</button>
-    <button class="button" [routerLink]="['/user', this.user.id]" routerLinkActive="router-link-active">User</button>
+    <button class="button" [routerLink]="['/products']" routerLinkActive="router-link-active"><fa-icon [icon]="faJoint" style="font-size: 30px;"></fa-icon></button>
+    <button class="button" [routerLink]="['/user', this.user.id]" routerLinkActive="router-link-active"><fa-icon [icon]="faUser" style="font-size: 30px;"></fa-icon></button>
     <button class="button" [routerLink]="['/login']" routerLinkActive="router-link-active">Login</button>
     <button class="button" [routerLink]="['/sign-up']" routerLinkActive="router-link-active">Sign up</button>
-    <button class="button" [routerLink]="['/cart']" routerLinkActive="router-link-active">Cart</button>
+    <button class="button" [routerLink]="['/cart']" routerLinkActive="router-link-active">
+      <fa-icon [icon]="faShoppingCart" style="font-size: 30px;">
+      </fa-icon>
+    </button>
+    <span style="color: white;" *ngIf="this.productsService.cartNumber" class="badge badge-notify" >{{this.cartNumber}}
+    </span>
   </span>
   
 </nav>
 
-<search-modal class="searchModal" closeModalClick="true" elementId="serarchResults" title="Matching Sessions">
-  <span class="matchedNumber" *ngIf="foundProducts">
-    {{foundProducts.length}} <span> Matched</span>
-  </span>
+<search-modal class="searchModal" closeModalClick="true" elementId="serarchResults" title="{{foundProducts?.length ? foundProducts.length : 0}}">
   <div class="list-group">
-    <a class="list-group-item" *ngFor="let product of foundProducts" [routerLink]="['products', product.id]">
+    <a class="list-group-item modal-item" *ngFor="let product of foundProducts" [routerLink]="['products', product.id]">
       <img class="modalImage" src='{{product?.imageUrl}}'>
       {{product.name}}
     </a>
   </div>
 </search-modal>
-
-<!-- if this route is products then search form will appear here. -->
