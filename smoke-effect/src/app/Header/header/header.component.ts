@@ -2,9 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/services/user.service';
 import { IProducts } from 'src/app/shared/models/products.model';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import { $ } from 'protractor';
 import { OpeningComponent } from 'src/app/Opening/opening/opening.component';
 import { Router } from '@angular/router';
+import { 
+  faUser,
+  faShoppingCart,
+  faSearch,
+  faSearchPlus,
+  faJoint
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +21,14 @@ export class HeaderComponent implements OnInit {
   user;
   searchTerm = '';
   foundProducts: IProducts[];
+  cartNumber: number;
+
+  //icons
+  faUser = faUser;
+  faShoppingCart = faShoppingCart;
+  faSearch = faSearch;
+  faSearchPlus = faSearchPlus;
+  faJoint = faJoint;
 
   constructor(
     private router: Router,
@@ -27,6 +41,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.userService.getUser(0);
+    this.productsService.cartNumber = this.user.cart.length;
+    this.cartNumber = this.productsService.cartNumber
   }
 
   loadOpening() {
