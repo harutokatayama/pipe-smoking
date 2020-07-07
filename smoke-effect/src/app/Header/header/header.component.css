@@ -60,3 +60,23 @@
     width: 50px;
     height: 50px;
 }
+
+.modal-item:hover {
+    background-color: silver;
+    text-decoration: none;
+}
+
+.searchButton:hover {
+    color: rgb(226, 78, 24);
+}
+
+.searchButtonPlus:hover {
+    color: rgb(226, 78, 24);
+}
+
+.badge-notify{
+    background:red;
+    position:relative;
+    top: -18px;
+    left: -10px;
+}
