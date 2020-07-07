@@ -8,7 +8,7 @@ import { JQ_TOKEN } from './jQuery.service';
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">{{title}}</h4>
+          <h4 class="modal-title"><span> Result: </span> {{title}} <span> Matched</span></h4>
           <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
         </div>
         <div class="modal-body" (click)="closeModal()">
@@ -19,7 +19,14 @@ import { JQ_TOKEN } from './jQuery.service';
   </div>
     `,
     styles: [`
-      .modal-body { height: 500px; overflow-y: scroll; }
+      .modal-body { 
+        height: 800px; 
+        overflow-y: scroll; 
+        background-color: #a7645e;
+        background-image: url("https://www.transparenttextures.com/patterns/arabesque.png");
+      }
+      .modal-header {
+      }
     `]
 })
 export class SearchModalComponent {
