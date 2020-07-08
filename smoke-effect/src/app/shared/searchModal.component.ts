@@ -4,7 +4,7 @@ import { JQ_TOKEN } from './jQuery.service';
 @Component({
     selector: 'search-modal',
     template: `
-    <div id="{{elementId}}" #modalcontainer class="modal fade" tabindex="-1">
+  <div id="{{elementId}}" #modalcontainer class="modal fade" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -20,7 +20,9 @@ import { JQ_TOKEN } from './jQuery.service';
     `,
     styles: [`
       .modal-body { 
-        height: 800px; 
+        height: 100%;
+        min-height: 500px;
+        max-height: 800px; 
         overflow-y: scroll; 
         background-color: #a7645e;
         background-image: url("https://www.transparenttextures.com/patterns/arabesque.png");

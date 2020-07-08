@@ -19,6 +19,7 @@ import { FooterComponent } from './Footer/footer/footer.component';
 import { JQ_TOKEN, CollapseComponent, SearchModalComponent, ModalTriggerDirective } from './shared/barrel';
 import { InMemoryDataService } from './shared/services/in-memory-data.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 let jQuery = window['$'];
 
 @NgModule({
@@ -43,6 +44,7 @@ let jQuery = window['$'];
     RatingModule,
     HttpClientModule,
     FontAwesomeModule,
+    DragDropModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     )
