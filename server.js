@@ -1,41 +1,50 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express(),
-      bodyParser = require("body-parser");
-      port = 3080;
+    　bodyParser = require("body-parser");　
+port = 3080;
 const db = mongoose.connect('mongodb://localhost/productsAPI');
 const Products = require('./models/productsModel');
+// const productsController = require('./controllers/productsController');
 
 app.use(bodyParser.json());
 app.use(express.static(process.cwd() + "/smoke-effect/dist/smoke-effect"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
+//GET
 app.get('/api/products', (req, res) => {
-    // const query = {};
-    // if(req.query.section){
-    //     query.section = req.query.section;
-    // }
-    // Products.find(query, (err, products) => {
-    //     if (err) {
-    //         return res.send(err);
-    //     } else {
-    //         console.log(products)
-    //         return res.json(products);
-    //     }
-    // });
+    const query = {};
+    if (req.query.id) {
+        query.id = req.query.id;
+    }
+    console.log(req)
+    Products.find(query, (err, products) => {
+        if (err) {
+            return res.send(err);
+        } else {
+            const returnProducts = products.map((product) => {
+                const newProduct = product.toJSON();
+                newProduct.links = {};
+                newProduct.links.self = `http://${req.headers.host}/api/products/${product._id}`;
+                return newProduct;
+            });
+            return res.json(returnProducts);
+        }
+    });
 });
 
+//POST
 app.post('/api/products', (req, res) => {
     const product = new Products(req.body);
 
-    console.log(product)
     product.save();
+    console.log(product);
     return res.status(201).json(product);
 });
 
-app.use('/api/products/:id', (req, res, next) => {
-    Products.findById(req.params.id, (err, product) => {
+//Middle ware
+app.use('/api/products/:productId', (req, res, next) => {
+    Products.findById(req.params.productId, (err, product) => {
         if (err) {
             return res.send(err);
         }
@@ -45,44 +54,46 @@ app.use('/api/products/:id', (req, res, next) => {
         }
         return res.sendStatus(404);
     });
-});
+})
 
-app.get('/api/products/:id', (req, res) => {
-    // Products.findById(req.params.id, (err, product) => {
-    //     if (err) {
-    //         return res.send(err);
-    //     } else {
-    //         console.log(product)
-    //         return res.json(product);
-    //     }
-    // });
+//GET
+app.get('/api/products/:productId', (req, res) => {
     res.json(req.product);
 });
 
-app.put('/api/products/:id', (req, res) => {
-    // Products.findById(req.params.id, (err, product) => {
-    //     if (err) {
-    //         return res.send(err);
-    //     } else {
-    //         console.log(product);
-    //         //product.name = res.name 
-    //         product.save();
-    //         return res.json(product);
-    //     }
-    // });
+//PUT
+app.put('/api/products/:productId', (req, res) => {
     const { product } = req;
-    //product.name = res.name;
-    product.save();
-    return res.json(product);
+    product.name = req.body.name;
+    product.price = req.body.price;
+    product.stock = req.body.stock;
+    product.section = req.body.section;
+    product.imageUrl = req.body.imageUrl;
+    product.brandName = req.body.brandName;
+    product.type = req.body.type;
+    product.origin = req.body.origin;
+    product.evaluation = req.body.evaluation;
+    product.condition = req.body.condition;
+    product.strength = req.body.strength;
+    product.want = req.body.want;
+    product.sold = req.body.sold;
+    req.product.save((err) => {
+        if (err) {
+            return res.send(err);
+        }
+        return res.json(product);
+    });
 });
 
-app.patch('/api/products/:id', (req, res) => {
+//PATCH
+app.patch('/api/products/:productId', (req, res) => {
     const { product } = req;
 
     if (req.body._id) {
         delete req.body._id;
     }
-    Object.entries(req.body).filter(item => {
+    Object.entries(req.body).forEach(item => {
+        console.log(item)
         const key = item[0];
         const value = item[1];
         product[key] = value;
@@ -95,13 +106,14 @@ app.patch('/api/products/:id', (req, res) => {
     });
 });
 
-app.delete('/api/products/:id', (req, res) => {
-    req.book.remove((err) => {
+//DELETE
+app.delete('/api/products/:productId', (req, res) => {
+    req.product.remove((err) => {
         if (err) {
             return res.send(err);
         }
         return res.sendStatus(204);
-    })
+    });
 });
 
 app.get('/', (req, res) => {

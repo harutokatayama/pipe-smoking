@@ -3,39 +3,36 @@ import { IProducts } from '../models/products.model';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, Subject, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
   public cartNumber: number;
   constructor(private http: HttpClient){}
-
   getProducts(): Observable<IProducts[]> {
-    let subject = new Subject<IProducts[]>()
-    setTimeout(() => {
-      subject.next(PRODUCTS);
-      subject.complete();
-    }, 100)
-    return subject;
+    // let subject = new Subject<IProducts[]>()
+    // setTimeout(() => {
+    //   subject.next(PRODUCTS);
+    //   subject.complete();
+    // }, 100)
+    // return subject;
+
+    console.log(this.http.get<IProducts[]>('/api/products'));
 
     //HTTP
-    // return this.http.get<IProducts[]>('/api/products')
-    //   .pipe(catchError(this.handleError<IProducts[]>('getProducts', [])))
+    return this.http.get<IProducts[]>('/api/products')
+      .pipe(catchError(this.handleError<IProducts[]>('getProducts', [])))
   }
-
     // getProducts(): Observable<IProducts[]> {
     //     return this.http.get<IProducts[]>('/api/products')
     //       .pipe(catchError(this.handleError<IProducts[]>('getProducts', [])))
     // }
-
     private handleError<T> (operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {
         console.log(`${operation} failed: ${error.message}`);
         return of(result as T);
       }
     }
-
     //deborah example
     // private handleError(err: HttpErrorResponse) {
     //   let errorMessage = '';
@@ -47,11 +44,9 @@ export class ProductsService {
     //   console.log(errorMessage);
     //   return throwError(errorMessage);
     // }
-
     getProduct(id: number): IProducts {
         return PRODUCTS.find(product => product.id === id)
     }
-
     searchProducts(searchTerm: string) {
       let term = searchTerm.toLowerCase();
       let results: IProducts[] = [];
@@ -60,7 +55,6 @@ export class ProductsService {
       //   return product;
       // })
       results = results.concat(matchingProducts);
-
       let emitter = new EventEmitter(true);
       setTimeout(() => {
         emitter.emit(results);

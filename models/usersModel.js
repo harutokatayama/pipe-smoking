@@ -13,3 +13,5 @@ const usersModel = new Schema({
     card: { type: String },
     cart: { type: Number },
 })
+
+module.exports = mongoose.model('Users', usersModel);
